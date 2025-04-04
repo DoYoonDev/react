@@ -1,13 +1,15 @@
 import React from 'react'
 
-const WeatherBox = () => {
-  return (
-    <div>
-      <div>서울</div>
-      <h2>날씨</h2>
-      <h3>온도</h3>
-    </div>
-  )
+const WeatherBox = (props) => {
+    const { weather } = props;
+    console.log(weather);
+    return (
+        <div className='weather-box'>
+        <div>{weather?.name }</div>
+        <h2>{weather?.main.temp} / {(weather?.main.temp * 9/5) + 32}</h2>
+        <h3>{weather?.weather[0].description}</h3>
+        </div>
+    )
 }
 
 export default WeatherBox
