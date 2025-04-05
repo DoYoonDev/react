@@ -1,8 +1,6 @@
 import React from 'react'
 
-const WeatherBox = (props) => {
-    const { weather } = props;
-    console.log(weather);
+const WeatherBox = ({weather}) => {
     return (
         <div className='weather-box'>
         <div>{weather?.name }</div>
