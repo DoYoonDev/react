@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
@@ -6,7 +5,7 @@ import WeatherBox from './component/WeatherBox';
 import WeatherButton from './component/WeatherButton';
 import ClipLoader from "react-spinners/ClipLoader";
 
-const API_key = 'fbf5b024ed69611a2172331fb0ee0f07';
+const Weather_API_key = process.env.REACT_APP_OPEN_WEATHER_API_KEY
 
 function App() {
   const [weather, setWeather] = useState(null);
@@ -25,12 +24,12 @@ function App() {
 
   const getWeatherByCurrentLocation = async (lat, lon) => {
     try {
-      let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}&units=metric`;
+      let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${Weather_API_key}&units=metric`;
       setLoading(true);
       let response = await fetch(url);
       let data = await response.json();
       setWeather(data);
-      setLoading(false);  
+      setLoading(false);
     } catch (error) {
       setAPIError(error.message);
       setLoading(false);   
@@ -39,7 +38,7 @@ function App() {
 
   const getWeatherByCity = async () => {
     try {
-      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}&units=metric`;
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${Weather_API_key}&units=metric`;
       setLoading(true);
       let response = await fetch(url);
       let data = await response.json();
@@ -65,7 +64,7 @@ function App() {
     } else {
       setCity(city);
     }
-  };
+  }
 
   return (
     <div>
@@ -87,7 +86,7 @@ function App() {
         )
       }
     </div>
-  );
+  )
 }
 
 export default App;
